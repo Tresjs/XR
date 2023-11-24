@@ -10,7 +10,7 @@
 
 # XR
 
-> Vue components and composable functions to build AR/VR experiences with [Tres](https://tresjs.org)
+> Vue components and composable functions to build AR/VR experiences with [TresJS](https://tresjs.org)
 
 - ⚡️ Powered by Vite
 - 🦾 Fully Typed
