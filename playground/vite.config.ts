@@ -6,6 +6,7 @@ import { resolve } from 'pathe'
 import UnoCSS from 'unocss/vite'
 import { templateCompilerOptions } from '@tresjs/core'
 import { qrcode } from 'vite-plugin-qrcode'
+import mkcert from 'vite-plugin-mkcert'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -27,6 +28,7 @@ export default defineConfig({
       /* options */
     }),
     qrcode(),
+    mkcert()
   ],
   resolve: {
     alias: {
@@ -34,4 +36,5 @@ export default defineConfig({
     },
     dedupe: ['three', '@tresjs/core'],
   },
+  server: { https: true }, // TODO: Remove when upgraded to Vite 5+
 })
