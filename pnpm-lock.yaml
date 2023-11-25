@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@dimforge/xr3d-compat':
-        specifier: ^0.11.2
-        version: 0.11.2
       '@tresjs/core':
         specifier: ^3.5.0
         version: 3.5.0(three@0.158.0)(vue@3.3.8)
@@ -319,10 +316,6 @@ packages:
       '@babel/helper-string-parser': 7.22.5
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
-
-  /@dimforge/xr3d-compat@0.11.2:
-    resolution: {integrity: sha512-vdWmlkpS3G8nGAzLuK7GYTpNdrkn/0NKCe0l1Jqxc7ZZOB3N0q9uG/Ap9l9bothWuAvxscIt0U97GVLr0lXWLg==}
-    dev: false
 
   /@docsearch/css@3.5.2:
     resolution: {integrity: sha512-SPiDHaWKQZpwR2siD0KQUwlStvIAnEyK6tAE2h2Wuoq8ue9skzhlyVQ1ddzOxX6khULnAALDiR/isSF3bnuciA==}
