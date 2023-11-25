@@ -17,7 +17,8 @@
     "physics"
   ],
   "maintainers": [
-    "Alvaro Saburido (https://github.com/alvarosabu/)"
+    "Alvaro Saburido (https://github.com/alvarosabu/)",
+    "Wade Penistone (https://github.com/Truemedia/)"
   ],
   "sideEffects": false,
   "exports": {
