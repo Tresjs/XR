@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="handleButtonClick">
+        <button @click="handleButtonClick" :style="buttonStyles">
             {{ label }}
         </button>
     </div>
@@ -9,14 +9,21 @@
 <script setup lang="ts">
     import { computed, ref, onMounted } from 'vue'
     import type { Ref } from 'vue'
+    import create from 'vue-zustand'
+    import { buttonStyles } from './buttonStyles'
 
-    // interface GlobalSessionState {
-    //     set: SetState<GlobalSessionState>
-    //     get: GetState<GlobalSessionState>
-    //     session: XRSession | null
-    //     referenceSpaceType: XRReferenceSpaceType | null
-    // }
-    // const globalSessionStore = create<GlobalSessionState>((set, get) => ({ set, get, session: null, referenceSpaceType: null }))
+    /**
+     * Filters to unique entries of an array.
+     */
+    const uniq = <T>(arr: T[]): T[] => Array.from(new Set<T>(arr))
+
+    interface GlobalSessionState {
+        set: SetState<GlobalSessionState>
+        get: GetState<GlobalSessionState>
+        session: XRSession | null
+        referenceSpaceType: XRReferenceSpaceType | null
+    }
+    const globalSessionStore = create<GlobalSessionState>((set, get) => ({ set, get, session: null, referenceSpaceType: null }))
 
     export type XRButtonStatus = 'unsupported' | 'exited' | 'entered'
     export type XRButtonUnsupportedReason = 'unknown' | 'https' | 'security'
@@ -33,41 +40,59 @@
         enterOnly?: boolean
         /** Whether this button should only exit an `XRSession`. Default is `false` */
         exitOnly?: boolean
+        /** This callback gets fired if XR initialization fails. */
+        onError?: (error: Error) => void
+    }
+
+    const getSessionOptions = (globalStateReferenceSpaceType: XRReferenceSpaceType | null, sessionInit: XRSessionInit | undefined): XRSessionInit | undefined => {
+        if (!globalStateReferenceSpaceType && !sessionInit) {
+            return undefined
+        }
+
+        if (globalStateReferenceSpaceType && !sessionInit) {
+            return { optionalFeatures: [globalStateReferenceSpaceType] }
+        }
+
+        if (globalStateReferenceSpaceType && sessionInit) {
+            return { ...sessionInit, optionalFeatures: uniq([...(sessionInit.optionalFeatures ?? []), globalStateReferenceSpaceType]) }
+        }
+
+        return sessionInit
     }
 
     /**
       * Props 
       */
     const props = defineProps<XRButtonProps>()
-        /** This callback gets fired if XR initialization fails. */
-        // onError?: (error: Error) => void
         /** React children, can also accept a callback returning an `XRButtonStatus` */
         // children?: React.ReactNode | ((status: XRButtonStatus) => React.ReactNode)
     // })
 
     function handleButtonClick() {
         try {
-            toggleSession(sessionMode, { sessionInit, enterOnly, exitOnly })
+            toggleSession(sessionMode.value, {
+                sessionInit: props.sessionInit, enterOnly: props.enterOnly, exitOnly: props.exitOnly
+            })
         } catch (e) {
-            const onError = onErrorRef.current
+            const onError = props.onError
             if (onError && e instanceof Error) onError(e)
             else throw e
         }
     }
 
-    // export const startSession = async (sessionMode: XRSessionMode, sessionInit: XRButtonProps['sessionInit']) => {
-        // const xrState = globalSessionStore.getState()
+    const startSession = async (sessionMode: XRSessionMode, sessionInit: XRButtonProps['sessionInit']) => {
+        const xrState = globalSessionStore.getState()
 
-        // if (xrState.session) {
-        //     console.warn('@react-three/xr: session already started, please stop it first')
-        //     return
-        // }
+        if (xrState.session) {
+            console.warn('@tresjs/xr: session already started, please stop it first')
+            return
+        }
 
-        // const options = getSessionOptions(xrState.referenceSpaceType, sessionInit)
-        // const session = await navigator.xr!.requestSession(sessionMode, options)
-        // xrState.set(() => ({ session }))
-        // return session
-    // }
+        const options = getSessionOptions(xrState.referenceSpaceType, sessionInit)
+        const session = await navigator.xr!.requestSession(sessionMode, options)
+        xrState.set(() => ({ session }))
+        return session
+    }
 
     //     export const stopSession = async () => {
     //     const xrState = globalSessionStore.getState()
@@ -81,7 +106,9 @@
     //     xrState.set({ session: null })
     // }
 
-    async function toggleSession() {
+    const toggleSession = async (sessionMode: XRSessionMode,
+    { sessionInit, enterOnly, exitOnly }: Pick<XRButtonProps, 'sessionInit' | 'enterOnly' | 'exitOnly'> = {}
+    ) => {
         const xrState = globalSessionStore.getState()
 
         // Bail if certain toggle way is disabled
@@ -90,7 +117,8 @@
 
         // Exit/enter session
         if (xrState.session) {
-            return await stopSession()
+            // return await stopSession()
+            console.log('stop')
         } else {
             return await startSession(sessionMode, sessionInit)
         }
@@ -139,6 +167,14 @@
     }
 
     onMounted(() => {
+        globalSessionStore.subscribe((state) => {
+            if (state.session) {
+                setStatus('entered')
+            } else if (status.value !== 'unsupported') {
+                setStatus('exited')
+            }
+        })
+
         if (!navigator?.xr) return void setStatus('unsupported')
 
         navigator.xr

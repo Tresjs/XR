@@ -6,7 +6,7 @@
 <template>
   <div>
     <XRButton mode="VR">Immersive Experience</XRButton>
-    <TresCanvas>
+    <TresCanvas window-size>
       <TresMesh>
         <TresTorusGeometry :args="[1, 0.5, 16, 32]" />
         <TresMeshBasicMaterial color="orange" />
