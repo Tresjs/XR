@@ -1,16 +1,13 @@
 <template>
-    <div>
-        <button @click="handleButtonClick" :style="buttonStyles">
-            {{ label }}
-        </button>
-    </div>
+    <button @click="handleButtonClick">
+        {{ label }}
+    </button>
 </template>
 
 <script setup lang="ts">
     import { computed, ref, onMounted } from 'vue'
     import type { Ref } from 'vue'
     import create from 'vue-zustand'
-    import { buttonStyles } from './buttonStyles'
 
     /**
      * Filters to unique entries of an array.
