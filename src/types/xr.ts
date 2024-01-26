@@ -1,3 +1,8 @@
+export interface GlobalSessionState {
+  session: XRSession | null
+  referenceSpaceType: XRReferenceSpaceType | null
+}
+
 export type XRManagerEventType = 'sessionstart' | 'sessionend'
 
 export interface XRManagerEvent {
