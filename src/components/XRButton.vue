@@ -36,7 +36,9 @@
     /**
       * Props 
       */
-    const props = defineProps<XRButtonProps>()
+    const props = withDefaults(defineProps<XRButtonProps>(), {
+        enterOnly: false, exitOnly: false
+    })        
 
     function handleButtonClick() {
         try {
