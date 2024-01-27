@@ -79,12 +79,3 @@ export interface XRButtonProps {
     /** This callback gets fired if XR initialization fails. */
     onError?: (error: Error) => void
   }
-
-  export interface XRState {
-    isPresenting: boolean
-    isHandTracking: boolean
-    player: THREE.Group
-    session: XRSession | null
-    foveation: number
-    frameRate?: number
-  }
