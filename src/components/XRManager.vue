@@ -91,7 +91,7 @@
 //       session.removeEventListener('inputsourceschange', handleInputSourcesChange)
 //     }
 //   }, [session, gl.xr, set, get])
-    })
+    // })
 </script>
 
 <template>
