@@ -82,3 +82,15 @@ pnpm run docs:build
 ## Sponsors
 
 Be the first to support this project [here](https://github.com/sponsors/tresjs) ☺️
+
+## Logic
+- Watch effects trigger for first time
+- VRButton is clicked
+- handleButtonClick method of XRButton is triggered
+- toggleSession is called
+- startSession is called
+- XR session is requested
+- XR session is saved to global session pinia store
+- Set status as entered
+- Save copy of global session XR session to provided state
+- Watch effects trigger for second time (after reactive depedencies update)
