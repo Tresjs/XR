@@ -1,9 +1,11 @@
 <template>
-    <XRManager v-bind="props" />
+    <XRManager v-bind="props">
+      <slot />
+    </XRManager>
 </template>
 
 <script setup lang="ts">
-  import { provide, reactive } from 'vue'
+  import { computed, provide, reactive, readonly } from 'vue'
   import type { Ref } from 'vue'
   import * as THREE from 'three'
   import XRManager from './XRManager.vue'
@@ -72,5 +74,44 @@
     }
   })
 
-  provide('state', state)
+  function addSessionEventListener(event, eventListener) {
+    if (state?.session) {
+      state.session.addEventListener(event, eventListener)
+    }
+  }
+  function removeSessionEventListener(event, eventListener) {
+    if (state?.session) {
+      state.session.removeEventListener(event, eventListener)
+    }
+  }
+
+  provide('state', {
+    state,
+    addSessionEventListener,
+    removeSessionEventListener,
+    session: computed({
+      get() {
+        return state.session
+      },
+      set(session) {
+        Object.assign(state, {session})
+      }
+    }),
+    isPresenting: computed({
+      get() {
+        return state.isPresenting
+      },
+      set(isPresenting) {
+        Object.assign(state, {isPresenting})
+      }
+    }),
+    isHandTracking: computed({
+      get() {
+        return state.isHandTracking
+      },
+      set(isHandTracking) {
+        Object.assign(state, {isHandTracking})
+      }
+    })
+  })
 </script>

@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-    import { computed, ref, onMounted } from 'vue'
+    import { computed, ref, watchEffect } from 'vue'
     // Composables
     import { useHelpers } from '../composables/useHelpers'
     import { XRButtonProps, XRButtonStatus, XRButtonUnsupportedReason } from '../types/xr'
@@ -60,6 +60,7 @@
 
         const options = getSessionOptions(globalSessionStore.referenceSpaceType, sessionInit)
         const session = await navigator.xr!.requestSession(sessionMode, options)
+        console.log('request session', sessionMode, options, session)
 
         globalSessionStore.session = session
         return session
@@ -140,7 +141,7 @@
         }
     })
 
-    onMounted(() => {
+    watchEffect(() => {
         if (!navigator?.xr) return void setStatus('unsupported')
 
         navigator.xr
