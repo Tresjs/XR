@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@tresjs/core':
         specifier: ^3.5.0
-        version: 3.5.0(three@0.164.1)(vue@3.3.8)
+        version: 3.9.0(three@0.164.1)(vue@3.3.8)
       pinia:
         specifier: ^2.1.7
         version: 2.1.7(typescript@5.2.2)(vue@3.3.8)
@@ -300,10 +300,6 @@ packages:
       '@algolia/logger-common': 4.23.3
       '@algolia/requester-common': 4.23.3
     dev: true
-
-  /@alvarosabu/utils@3.1.1:
-    resolution: {integrity: sha512-DdZNe0i0UsqA2X/+JtaznG4qGorU24FaHqxMAhVspQaC1my+YAVQLpfw8GilHpzMxPxX4sGVzuTnBF8GOdG5oA==}
-    dev: false
 
   /@alvarosabu/utils@3.2.0:
     resolution: {integrity: sha512-aoGWRfaQjOo9TUwrBA6W0zwTHktgrXy69GIFNILT4gHsqscw6+X8P6uoSlZVQFr887SPm8x3aDin5EBVq8y4pw==}
@@ -1544,20 +1540,6 @@ packages:
       - '@react-three/fiber'
       - '@vue/composition-api'
       - react
-    dev: false
-
-  /@tresjs/core@3.5.0(three@0.164.1)(vue@3.3.8):
-    resolution: {integrity: sha512-kh9QoLMWfkO2V4lytdJTARhfpC+Hf8JH/aTLsqYOirhHla4tTahQn5lHVrFwgkYjES/Qwr+UX84U2J6CQHBT3g==}
-    peerDependencies:
-      three: '>=0.133'
-      vue: '>=3.3'
-    dependencies:
-      '@alvarosabu/utils': 3.1.1
-      '@vueuse/core': 10.5.0(vue@3.3.8)
-      three: 0.164.1
-      vue: 3.3.8(typescript@5.2.2)
-    transitivePeerDependencies:
-      - '@vue/composition-api'
     dev: false
 
   /@tresjs/core@3.9.0(three@0.164.1)(vue@3.3.8):
