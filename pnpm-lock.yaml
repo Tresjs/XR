@@ -10,13 +10,13 @@ importers:
     dependencies:
       '@tresjs/core':
         specifier: ^3.5.0
-        version: 3.5.0(three@0.158.0)(vue@3.3.8)
+        version: 3.5.0(three@0.164.1)(vue@3.3.8)
       pinia:
         specifier: ^2.1.7
         version: 2.1.7(typescript@5.2.2)(vue@3.3.8)
       three:
-        specifier: ^0.158.0
-        version: 0.158.0
+        specifier: ^0.164.0
+        version: 0.164.1
       vue:
         specifier: ^3.3.8
         version: 3.3.8(typescript@5.2.2)
@@ -37,8 +37,8 @@ importers:
         specifier: ^20.9.0
         version: 20.9.0
       '@types/three':
-        specifier: ^0.158.2
-        version: 0.158.2
+        specifier: ^0.164.0
+        version: 0.164.1
       '@vitejs/plugin-vue':
         specifier: ^4.4.1
         version: 4.4.1(vite@4.5.0)(vue@3.3.8)
@@ -1035,7 +1035,7 @@ packages:
       - react
     dev: false
 
-  /@tresjs/core@3.5.0(three@0.158.0)(vue@3.3.8):
+  /@tresjs/core@3.5.0(three@0.164.1)(vue@3.3.8):
     resolution: {integrity: sha512-kh9QoLMWfkO2V4lytdJTARhfpC+Hf8JH/aTLsqYOirhHla4tTahQn5lHVrFwgkYjES/Qwr+UX84U2J6CQHBT3g==}
     peerDependencies:
       three: '>=0.133'
@@ -1043,7 +1043,7 @@ packages:
     dependencies:
       '@alvarosabu/utils': 3.1.1
       '@vueuse/core': 10.5.0(vue@3.3.8)
-      three: 0.158.0
+      three: 0.164.1
       vue: 3.3.8(typescript@5.2.2)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -1128,6 +1128,10 @@ packages:
       - supports-color
     dev: true
 
+  /@tweenjs/tween.js@23.1.2:
+    resolution: {integrity: sha512-kMCNaZCJugWI86xiEHaY338CU5JpD0B97p1j1IKNn/Zto8PgACjQx0UxbHjmOcLl/dDOBnItwD07KmCs75pxtQ==}
+    dev: true
+
   /@types/argparse@1.0.38:
     resolution: {integrity: sha512-ebDJ9b0e702Yr7pWgB0jzm+CX4Srzz8RcXtLJDJB+BSccqMa36uyH/zUsSYao5+BD1ytv3k3rPYCq4mAE1hsXA==}
     dev: true
@@ -1195,12 +1199,13 @@ packages:
     resolution: {integrity: sha512-pXNfAD3KHOdif9EQXZ9deK82HVNaXP5ZIF5RP2QG6OQFNTaY2YIetfrE9t528vEreGQvEPRDDc8muaoYeK0SxQ==}
     dev: true
 
-  /@types/three@0.158.2:
-    resolution: {integrity: sha512-KPYbdLI8VPhu7qnHqsayfkuk58Qk+20l1U5HBK7uG50EjtrqeCreurNNpnatMZje29XRuTM1A+pGHGdDBHPyUQ==}
+  /@types/three@0.164.1:
+    resolution: {integrity: sha512-dR/trWDhyaNqJV38rl1TonlCA9DpnX7OPYDWD81bmBGn/+uEc3+zNalFxQcV4FlPTeDBhCY3SFWKvK6EJwL88g==}
     dependencies:
+      '@tweenjs/tween.js': 23.1.2
       '@types/stats.js': 0.17.3
       '@types/webxr': 0.5.7
-      fflate: 0.6.10
+      fflate: 0.8.2
       meshoptimizer: 0.18.1
     dev: true
 
@@ -3426,6 +3431,11 @@ packages:
 
   /fflate@0.6.10:
     resolution: {integrity: sha512-IQrh3lEPM93wVCEczc9SaAOvkmcoQn/G8Bo1e8ZPlY3X3bnAxWaBdvTdvM1hP62iZp0BXWDy4vTAy4fF0+Dlpg==}
+    dev: false
+
+  /fflate@0.8.2:
+    resolution: {integrity: sha512-cPJU47OaAoCbg0pBvzsgpTPhmhqI5eJjh/JIu8tPj5q+T7iLvW/JAYUqmE7KOB4R1ZyEhzBaIQpQpardBF5z8A==}
+    dev: true
 
   /figures@5.0.0:
     resolution: {integrity: sha512-ej8ksPF4x6e5wvK9yevct0UCXh8TTFlWGVLlgjZuoBH1HwjIfKE/IdL5mq89sFA7zELi1VhKpmtDnrs7zWyeyg==}
@@ -6008,10 +6018,6 @@ packages:
       fflate: 0.6.10
       potpack: 1.0.2
       three: 0.164.1
-    dev: false
-
-  /three@0.158.0:
-    resolution: {integrity: sha512-TALj4EOpdDPF1henk2Q+s17K61uEAAWQ7TJB68nr7FKxqwyDr3msOt5IWdbGm4TaWKjrtWS8DJJWe9JnvsWOhQ==}
     dev: false
 
   /three@0.164.1:
