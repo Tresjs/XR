@@ -14,7 +14,7 @@ WebXR also requires web servers to serve content over HTTPS which can be achieve
 Requirements for a headset to be able to connect to a web server hosting WebXR content
 
 ### Server connection  🔌
-You will also need either the hostname or IP address of your host machine (server), as well as the port number of your web server (if using none standard port number) as you will need to use this instead of localhost when connectingto the server via the web browser on your XR headset
+You will also need either the hostname or IP address of your host machine (server), as well as the port number of your web server (if using none standard port number) as you will need to use this instead of localhost when connecting to the server via the web browser on your XR headset
 
 eg: https://xr.local:5173
 
