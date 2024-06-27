@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /* import { inject } from 'vue'
 
-const state = inject('state') */
+const state = inject('xrInjectionKey') */
 /* const {
   controllers,
   interactions,

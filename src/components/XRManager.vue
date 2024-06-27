@@ -4,6 +4,7 @@ import { computed, inject, watchEffect } from 'vue'
 import { useTresContext } from '@tresjs/core'
 import type { XRManagerEvent, XRProps } from '../types/xr'
 import { useGlobalSessionStore } from '../stores/globalSession'
+import { xrInjectionKey } from '../core/injectionKeys'
 import InteractionManager from './InteractionManager.vue'
 
 /**
@@ -31,7 +32,7 @@ const {
   isPresenting,
   addSessionEventListener,
   removeSessionEventListener,
-} = inject('state')
+} = inject(xrInjectionKey)
 const { player, controllers } = state
 
 watchEffect(() => {

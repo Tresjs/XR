@@ -3,8 +3,8 @@ import { computed, provide, reactive } from 'vue'
 import type { Ref } from 'vue'
 import * as THREE from 'three'
 import type { XRProps } from '../types/xr'
-import type { XRState } from '../types/context'
 import type { XRInteractionHandler, XRInteractionType } from '../types/interaction'
+import { xrInjectionKey } from '../core/injectionKeys'
 import XRManager from './XRManager.vue'
 
 /**
@@ -79,7 +79,7 @@ function removeSessionEventListener(event, eventListener) {
   }
 }
 
-provide('state', {
+provide(xrInjectionKey, {
   state,
   addSessionEventListener,
   removeSessionEventListener,
