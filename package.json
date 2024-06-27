@@ -35,8 +35,8 @@
   "module": "./dist/tresxr.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist",
-    "*.d.ts"
+    "*.d.ts",
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -59,6 +59,7 @@
   },
   "dependencies": {
     "@tresjs/core": "^4.0.2",
+    "pinia": "^2.1.7",
     "three": "^0.165.0",
     "vue": "^3.4.30"
   },

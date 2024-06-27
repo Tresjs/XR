@@ -1,16 +1,18 @@
 import * as THREE from 'three'
-import { XRControllerEvent } from '../types'
+import type { XRControllerEvent } from '../types'
 // import { XRControllerModel } from './XRControllerModel'
 
-/** Counterpart of WebXRController from three js
- * in a sense that it's long living */
+/**
+ * Counterpart of WebXRController from three js
+ * in a sense that it's long living
+ */
 export class XRController extends THREE.Group {
   readonly index: number
   readonly controller: THREE.XRTargetRaySpace
   readonly grip: THREE.XRGripSpace
   readonly hand: THREE.XRHandSpace
   public inputSource: XRInputSource | null = null
-//   public xrControllerModel: XRControllerModel | null = null
+  //   public xrControllerModel: XRControllerModel | null = null
 
   constructor(index: number, gl: THREE.WebGLRenderer) {
     super()
@@ -35,8 +37,8 @@ export class XRController extends THREE.Group {
   }
 
   _onConnected(event: XRControllerEvent) {
-    if (event.fake) return
-    if (!event.data) return
+    if (event.fake) { return }
+    if (!event.data) { return }
 
     this.visible = true
     this.inputSource = event.data
@@ -44,7 +46,7 @@ export class XRController extends THREE.Group {
   }
 
   _onDisconnected(event: XRControllerEvent) {
-    if (event.fake) return
+    if (event.fake) { return }
 
     this.visible = false
     this.inputSource = null

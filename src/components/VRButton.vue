@@ -1,11 +1,11 @@
-<template>
-    <XRButton mode="VR" v-bind="{sessionInit}" :style="buttonStyles"></XRButton>
-</template>
-
 <script setup lang="ts">
-    import XRButton from './XRButton.vue'
+import XRButton from './XRButton.vue'
 
-    import { buttonStyles } from './buttonStyles'
+import { buttonStyles } from './buttonStyles'
 
-    const sessionInit = { optionalFeatures: ['local-floor', 'bounded-floor', 'hand-tracking', 'layers'] }
+const sessionInit = { optionalFeatures: ['local-floor', 'bounded-floor', 'hand-tracking', 'layers'] }
 </script>
+
+<template>
+  <XRButton mode="VR" v-bind="{ sessionInit }" :style="buttonStyles" />
+</template>

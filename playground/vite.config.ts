@@ -28,7 +28,7 @@ export default defineConfig({
       /* options */
     }),
     qrcode(),
-    mkcert()
+    mkcert(),
   ],
   resolve: {
     alias: {
