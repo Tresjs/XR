@@ -75,26 +75,6 @@ const toggleSession = async (sessionMode: XRSessionMode, { sessionInit, enterOnl
   }
 }
 
-const getLabel = (status: XRButtonStatus, mode: XRButtonProps['mode'], reason: XRButtonUnsupportedReason) => {
-  switch (status) {
-    case 'entered':
-      return `Exit ${mode}`
-    case 'exited':
-      return `Enter ${mode}`
-    case 'unsupported':
-    default:
-      switch (reason) {
-        case 'https':
-          return 'HTTPS needed'
-        case 'security':
-          return `${mode} blocked`
-        case 'unknown':
-        default:
-          return `${mode} unsupported`
-      }
-  }
-}
-
 const status: Ref<XRButtonStatus> = ref('exited')
 const reason: Ref<XRButtonUnsupportedReason> = ref('unknown')
 const mode = computed(() => {
@@ -106,7 +86,23 @@ const sessionMode = computed(() => {
 })
 
 const label = computed(() => {
-  return getLabel(status.value, mode.value, reason.value)
+  switch (status.value) {
+    case 'entered':
+      return `Exit ${mode.value}`
+    case 'exited':
+      return `Enter ${mode.value}`
+    case 'unsupported':
+    default:
+      switch (reason.value) {
+        case 'https':
+          return 'HTTPS needed'
+        case 'security':
+          return `${mode.value} blocked`
+        case 'unknown':
+        default:
+          return `${mode.value} unsupported`
+      }
+  }
 })
 
 async function setStatus(statusValue: XRButtonStatus) {
