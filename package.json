@@ -50,7 +50,8 @@
     "lint:fix": "eslint . --fix",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "prepare": "husky"
   },
   "peerDependencies": {
     "@tresjs/core": ">=3.5.0",
@@ -72,6 +73,7 @@
     "dts": "^0.1.1",
     "eslint": "^9.5.0",
     "eslint-plugin-vue": "^9.26.0",
+    "husky": "^9.0.11",
     "kolorist": "^1.8.0",
     "pathe": "^1.1.2",
     "release-it": "^17.4.0",
