@@ -118,6 +118,10 @@ const mode = computed(() => {
   return props.mode
 })
 
+const sessionMode = computed(() => {
+  return (mode.value === 'inline' ? mode.value : `immersive-${mode.value.toLowerCase()}`) as XRSessionMode
+})
+
 const label = computed(() => {
   return getLabel(status.value, mode.value, reason.value)
 })

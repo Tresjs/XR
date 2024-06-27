@@ -15,6 +15,7 @@ function onError(error) {
   <div>
     <VRButton />
     <TresCanvas window-size>
+      <TresPerspectiveCamera :position="[0, 0, 5]" />
       <XR v-bind="{ onSessionStart, onError }">
         <TresMesh>
           <TresTorusGeometry :args="[1, 0.5, 16, 32]" />
