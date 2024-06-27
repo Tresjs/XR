@@ -75,23 +75,6 @@ const toggleSession = async (sessionMode: XRSessionMode, { sessionInit, enterOnl
   }
 }
 
-function handleButtonClick() {
-  try {
-    toggleSession(sessionMode.value, {
-      sessionInit: props.sessionInit,
-      enterOnly: props.enterOnly,
-      exitOnly: props.exitOnly,
-    })
-  }
-  catch (e) {
-    const onError = props.onError
-    if (onError && e instanceof Error) {
-      onError(e)
-    }
-    else { throw e }
-  }
-}
-
 const getLabel = (status: XRButtonStatus, mode: XRButtonProps['mode'], reason: XRButtonUnsupportedReason) => {
   switch (status) {
     case 'entered':
@@ -134,7 +117,24 @@ async function setReason(reasonValue: XRButtonUnsupportedReason) {
   reason.value = reasonValue
 }
 
-globalSessionStore.$subscribe((mutation, state) => {
+function handleButtonClick() {
+  try {
+    toggleSession(sessionMode.value, {
+      sessionInit: props.sessionInit,
+      enterOnly: props.enterOnly,
+      exitOnly: props.exitOnly,
+    })
+  }
+  catch (e) {
+    const onError = props.onError
+    if (onError && e instanceof Error) {
+      onError(e)
+    }
+    else { throw e }
+  }
+}
+
+globalSessionStore.$subscribe((_mutation, state) => {
   if (state.session) {
     setStatus('entered')
   }
