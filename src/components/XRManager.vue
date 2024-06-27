@@ -2,8 +2,9 @@
 <script setup lang="ts">
 import { computed, inject, watchEffect } from 'vue'
 import { useTresContext } from '@tresjs/core'
-import type { XRManagerEvent, XRProps } from '../types/xr'
+import type { XRProps } from '../types/xr'
 import { useGlobalSessionStore } from '../stores/globalSession'
+import type { XrContext } from '../core/injectionKeys'
 import { xrInjectionKey } from '../core/injectionKeys'
 import InteractionManager from './InteractionManager.vue'
 
@@ -24,13 +25,12 @@ const XRCamera = computed(() => {
 })
 
 const {
+  session,
   player,
   controllers,
-  foveation,
-  session,
-  isHandTracking,
-  isPresenting,
-} = inject(xrInjectionKey)
+/*   isHandTracking,
+  isPresenting, */
+} = inject(xrInjectionKey) as XrContext
 
 watchEffect(() => {
   console.log('handler watch effect')
@@ -88,23 +88,23 @@ watchEffect(() => {
   globalSessionStore.referenceSpaceType = referenceSpace
 })
 
-const handleSessionStart = (_nativeEvent: XRManagerEvent) => {
+/* const handleSessionStart = (_nativeEvent: XRManagerEvent) => {
   isPresenting.value = true
   //   onSessionStartRef.current?.({ nativeEvent: { ...nativeEvent, target: session }, target: session })
-}
-const handleSessionEnd = (_nativeEvent: XRManagerEvent) => {
+} */
+/* const handleSessionEnd = (_nativeEvent: XRManagerEvent) => {
   isPresenting.value = false
   session.value = null
   globalSessionStore.session = null
   //   onSessionEndRef.current?.({ nativeEvent: { ...nativeEvent, target: session }, target: session })
-}
-const handleVisibilityChange = (_nativeEvent: XRSessionEvent) => {
+} */
+/* const handleVisibilityChange = (_nativeEvent: XRSessionEvent) => {
   //   onVisibilityChangeRef.current?.({ nativeEvent, target: session })
-}
-const handleInputSourcesChange = (_nativeEvent: XRInputSourceChangeEvent) => {
+} */
+/* const handleInputSourcesChange = (_nativeEvent: XRInputSourceChangeEvent) => {
   isHandTracking.value = Object.values(session.inputSources).some(source => source.hand)
   //   onInputSourcesChangeRef.current?.({ nativeEvent, target: session })
-}
+} */
 
 /* watchEffect(() => {
   console.log('watch effect session handling', session)

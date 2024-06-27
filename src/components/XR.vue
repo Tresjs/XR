@@ -15,9 +15,9 @@ import XRManager from './XRManager.vue'
 const props = defineProps<XRProps>()
 
 const ctx: XrContext = {
-  controllers: [],
-  isPresenting: false,
-  isHandTracking: false,
+  controllers: ref([]),
+  isPresenting: ref(false),
+  isHandTracking: ref(false),
   player: new Group(),
   session: ref(null),
   foveation: 0,
