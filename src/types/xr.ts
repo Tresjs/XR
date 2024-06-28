@@ -62,6 +62,7 @@ export interface XRProps {
 
 export type XRButtonStatus = 'unsupported' | 'exited' | 'entered'
 export type XRButtonUnsupportedReason = 'unknown' | 'https' | 'security'
+export type XRMode = 'inline' | 'immersive-ar' | 'immersive-vr'
 
 export interface XRButtonProps {
   /** The type of `XRSession` to create */

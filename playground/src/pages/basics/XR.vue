@@ -14,15 +14,15 @@ function onError(error) {
 <template>
   <div>
     <VRButton />
-    <TresCanvas window-size>
+    <TresCanvas window-size alpha>
       <TresPerspectiveCamera :position="[0, 0, 5]" />
       <XR v-bind="{ onSessionStart, onError }">
-        <TresMesh>
+        <TresMesh :position="[-2, 0, 0]">
           <TresTorusGeometry :args="[1, 0.5, 16, 32]" />
           <TresMeshBasicMaterial color="blue" />
         </TresMesh>
       </XR>
-      <TresMesh>
+      <TresMesh :position="[2, 0, 0]">
         <TresTorusGeometry :args="[1, 0.5, 16, 32]" />
         <TresMeshBasicMaterial color="orange" />
       </TresMesh>
