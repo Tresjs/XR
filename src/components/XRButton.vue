@@ -2,10 +2,10 @@
 import { computed, ref, watchEffect } from 'vue'
 // Composables
 import type { Ref } from 'vue'
-import { useHelpers } from '../composables/useHelpers'
 import type { XRButtonProps, XRButtonStatus, XRButtonUnsupportedReason } from '../types/xr'
 // Store
 import { useGlobalSessionStore } from '../stores/globalSession'
+import { filterUniq } from '../utils/helpers'
 
 /**
  * Props
@@ -14,8 +14,6 @@ const props = withDefaults(defineProps<XRButtonProps>(), {
   enterOnly: false,
   exitOnly: false,
 })
-
-const { uniq } = useHelpers()
 
 const globalSessionStore = useGlobalSessionStore()
 
@@ -29,7 +27,7 @@ const getSessionOptions = (globalStateReferenceSpaceType: XRReferenceSpaceType |
   }
 
   if (globalStateReferenceSpaceType && sessionInit) {
-    return { ...sessionInit, optionalFeatures: uniq([...(sessionInit.optionalFeatures ?? []), globalStateReferenceSpaceType]) }
+    return { ...sessionInit, optionalFeatures: filterUniq([...(sessionInit.optionalFeatures ?? []), globalStateReferenceSpaceType]) }
   }
 
   return sessionInit
