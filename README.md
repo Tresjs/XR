@@ -90,7 +90,7 @@ Be the first to support this project [here](https://github.com/sponsors/tresjs) 
 - toggleSession is called
 - startSession is called
 - XR session is requested
-- XR session is saved to global session pinia store
+- XR session is saved to global session
 - Set status as entered
 - Save copy of global session XR session to provided state
 - Watch effects trigger for second time (after reactive depedencies update)

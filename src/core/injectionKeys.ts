@@ -1,7 +1,4 @@
-import type { InjectionKey, ShallowRef } from 'vue'
+import type { InjectionKey } from 'vue'
+import type { XRContext } from '../composables/useXR'
 
-export interface XrContext {
-
-}
-
-export const xrInjectionKey: InjectionKey<ShallowRef<XrContext | null>> = Symbol()
+export const xrInjectionKey: InjectionKey<XRContext | null> = Symbol('tres-xr')
