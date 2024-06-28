@@ -1,11 +1,11 @@
 <!-- eslint-disable no-console -->
 <script setup lang="ts">
-import { computed, inject, onMounted, unref, watch, watchEffect } from 'vue'
+import { inject, watch, watchEffect } from 'vue'
 import { useLoop, useTresContext } from '@tresjs/core'
 import type { XRManagerEvent, XRProps } from '../types/xr'
 import { useGlobalSessionStore } from '../stores/globalSession'
-import type { XrContext } from '../core/injectionKeys'
 import { xrInjectionKey } from '../core/injectionKeys'
+import type { XRContext } from '../composables/useXR'
 import InteractionManager from './InteractionManager.vue'
 
 /**
@@ -20,17 +20,13 @@ const { renderer, camera, scene, render: renderCtx } = useTresContext()
 // TODO: Grab renderer from tres context and use as GL var
 const globalSessionStore = useGlobalSessionStore()
 
-const XRCamera = computed(() => {
-  return camera?.value ?? {}
-})
-
 const {
   session,
-  player,
-  controllers,
+  /*   player,
+  controllers, */
   isPresenting,
   isHandTracking,
-} = inject(xrInjectionKey) as XrContext
+} = inject(xrInjectionKey) as XRContext
 
 watchEffect(() => {
   console.log('handler watch effect')
