@@ -1,22 +1,24 @@
 import type { Intersection, Object3D } from 'three'
 import { Group } from 'three'
-import { type Ref, inject, provide, ref } from 'vue'
+import { type Ref, inject, provide, ref, toRefs } from 'vue'
 import type { XRController } from '../classes/XRController'
 import { xrInjectionKey } from '../core/injectionKeys'
 import type { XRInteractionHandler, XRInteractionType } from '../types/interaction'
+import type { XRMode, XRProps } from '../types/xr'
 
 export interface XRContext {
   isPresenting: Ref<boolean>
   isHandTracking: Ref<boolean>
   player: Group
   session: Ref<XRSession | null>
+  mode: Ref<XRMode>
   controllers: Ref<XRController[]>
   /**
    * Enables foveated rendering. `Default is `0`
    * 0 = no foveation, full resolution
    * 1 = maximum foveation, the edges render at lower resolution
    */
-  foveation: number
+  foveation: Ref<number>
   /**
    * The target framerate for the XRSystem. Smaller rates give more CPU headroom at the cost of responsiveness.
    * Recommended range is `72`-`120`. Default is unset and left to the device.
@@ -27,7 +29,7 @@ export interface XRContext {
    */
   frameRate?: number
   /** Type of WebXR reference space to use. Default is `local-floor` */
-  referenceSpace: XRReferenceSpaceType
+  referenceSpace?: Ref<XRReferenceSpaceType>
   hoverState: Record<XRHandedness, Map<Object3D, Intersection>>
   interactions: Map<Object3D, Record<XRInteractionType, Ref<XRInteractionHandler>[]>>
   hasInteraction: (_object: Object3D, _eventType: XRInteractionType) => boolean
@@ -36,15 +38,17 @@ export interface XRContext {
   removeInteraction: (_object: Object3D, _eventType: XRInteractionType, handlerRef: Ref<XRInteractionHandler>) => void
 }
 
-export function useXRContextProvider() {
+export function useXRContextProvider(props: XRProps) {
+  const { referenceSpace, foveation } = toRefs(props)
   const ctx: XRContext = {
     controllers: ref([]),
     isPresenting: ref(false),
     isHandTracking: ref(false),
+    mode: ref('immersive-vr'),
     player: new Group(),
     session: ref(null),
-    foveation: 0,
-    referenceSpace: 'local-floor',
+    foveation,
+    referenceSpace,
     hoverState: {
       left: new Map(),
       right: new Map(),

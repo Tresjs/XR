@@ -6,9 +6,12 @@ import XRManager from './XRManager.vue'
 /**
  * Props
  */
-const props = defineProps<XRProps>()
+const props = withDefaults(defineProps<XRProps>(), {
+  foveation: 0,
+  referenceSpace: 'local-floor',
+})
 
-useXRContextProvider()
+useXRContextProvider(props)
 </script>
 
 <template>

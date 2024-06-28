@@ -1,11 +1,10 @@
 <!-- eslint-disable no-console -->
 <script setup lang="ts">
-import { inject, watch, watchEffect } from 'vue'
+import { watch } from 'vue'
 import { useLoop, useTresContext } from '@tresjs/core'
 import type { XRManagerEvent, XRProps } from '../types/xr'
-import { useGlobalSessionStore } from '../stores/globalSession'
-import { xrInjectionKey } from '../core/injectionKeys'
-import type { XRContext } from '../composables/useXR'
+import { useXR } from '../composables/useXR'
+import { useGlobalSession } from '../composables/useGlobalSession'
 import InteractionManager from './InteractionManager.vue'
 
 /**
@@ -16,72 +15,33 @@ const props = withDefaults(defineProps<XRProps>(), {
   frameRate: undefined,
   referenceSpace: 'local-floor',
 })
+
+// Global XR context
+const { session: globalSession, referenceSpace: globalReferenceSpace } = useGlobalSession()
+
+// XR context
+const { session, foveation, isHandTracking, isPresenting } = useXR()
+
+// TresJS context
 const { renderer, camera, scene, render: renderCtx } = useTresContext()
-// TODO: Grab renderer from tres context and use as GL var
-const globalSessionStore = useGlobalSessionStore()
 
-const {
-  session,
-  /*   player,
-  controllers, */
-  isPresenting,
-  isHandTracking,
-} = inject(xrInjectionKey) as XRContext
+// Sync XR Content with Global Session
 
-watchEffect(() => {
-  console.log('handler watch effect')
-  // const handlers = [0, 1].map((id) => {
-  //     const target = new XRController(id, renderer.value)
-  //     const onConnected = () => {
-  //         controllers = [...controllers, target]
-  //     }
-  //     const onDisconnected = () => {
-  //         controllers = controllers.filter((it) => it !== target)
-  //     }
-
-  //     target.addEventListener('connected', onConnected)
-  //     target.addEventListener('disconnected', onDisconnected)
-
-  //     return () => {
-  //         target.removeEventListener('connected', onConnected)
-  //         target.removeEventListener('disconnected', onDisconnected)
-  //     }
-  // })
-  // return () => handlers.forEach((cleanup) => cleanup())
-})
-//   }, [gl, set])
-watchEffect(() => {
-  globalSessionStore.$subscribe(() => {
-    console.log('watch effect global ses to state')
-    session.value = globalSessionStore.session
-  })
+watch(globalSession, (value) => {
+  if (value) {
+    session.value = value
+  }
 })
 
-watchEffect(() => {
-  console.log('watch effect fov')
-  const { foveation } = props
-
-  renderer.value.xr.setFoveation(foveation)
+// Watch Props Changes
+watch(() => props.referenceSpace, (value) => {
+  renderer.value.xr.setReferenceSpaceType(value)
+  globalReferenceSpace.value = value as XRReferenceSpaceType
 })
 
-watchEffect(() => {
-  console.log('watch effect framerate')
-  /* const { frameRate } = props */
-
-  // try {
-  // if (frameRate) globalSessionStore.session?.updateTargetFrameRate?.(frameRate)
-  // } catch (_) {
-  // Framerate not supported or configurable
-  // }
-})
-
-watchEffect(() => {
-  console.log('cam', camera.value)
-  console.log('watch effect ref space')
-  const { referenceSpace } = props
-
-  renderer.value.xr.setReferenceSpaceType(referenceSpace)
-  globalSessionStore.referenceSpaceType = referenceSpace
+watch(() => props.foveation, (value) => {
+  foveation.value = value
+  renderer.value.xr.setFoveation(value)
 })
 
 const handleSessionStart = (_nativeEvent: XRManagerEvent) => {
@@ -91,7 +51,7 @@ const handleSessionStart = (_nativeEvent: XRManagerEvent) => {
 const handleSessionEnd = (_nativeEvent: XRManagerEvent) => {
   isPresenting.value = false
   session.value = null
-  globalSessionStore.session = null
+  globalSession.value = null
   //   onSessionEndRef.current?.({ nativeEvent: { ...nativeEvent, target: session }, target: session })
 }
 const handleVisibilityChange = (_nativeEvent: XRSessionEvent) => {
@@ -110,6 +70,7 @@ const handleXRFrame = () => {
 
 const { render } = useLoop()
 
+// React to session
 watch(session, (value) => {
   if (!value) {
     renderer.value.xr.setSession(null!)
@@ -145,32 +106,6 @@ watch(session, (value) => {
     session.value?.removeEventListener('inputsourceschange', handleInputSourcesChange)
   },
 })
-
-/* watchEffect(() => {
-  console.log('watch effect session handling', session)
-  const { xr } = renderer.value
-  if (!session) { return void xr.setSession(null!) }
-
-  xr.addEventListener('sessionstart', handleSessionStart)
-  xr.addEventListener('sessionend', handleSessionEnd)
-  session.value.addEventListener('visibilitychange', handleVisibilityChange)
-  session.value.addEventListener('inputsourceschange', handleInputSourcesChange)
-
-  renderer.value.xr.setSession(session.value).then(() => {
-    // on setSession, three#WebXRManager resets foveation to 1
-    // so foveation set needs to happen after it
-    console.log('renderer xr set session', session, renderer.value.xr)
-    renderer.value.xr.setFoveation(foveation)
-  })
-}, { onTrack: () => {
-  const { xr } = renderer.value
-  if (!session) { return void xr.setSession(null!) }
-
-  xr.removeEventListener('sessionstart', handleSessionStart)
-  xr.removeEventListener('sessionend', handleSessionEnd)
-  session.value.removeEventListener('visibilitychange', handleVisibilityChange)
-  session.value.removeEventListener('inputsourceschange', handleInputSourcesChange)
-} }) */
 </script>
 
 <template>

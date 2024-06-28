@@ -1,21 +1,137 @@
 <script setup lang="ts">
-import { computed, ref, watchEffect } from 'vue'
+import { computed, ref, toRefs, watchEffect } from 'vue'
 // Composables
 import type { Ref } from 'vue'
 import type { XRButtonProps, XRButtonStatus, XRButtonUnsupportedReason } from '../types/xr'
-// Store
-import { useGlobalSessionStore } from '../stores/globalSession'
 import { filterUniq } from '../utils/helpers'
+import { useGlobalSession } from '../composables/useGlobalSession'
 
 /**
  * Props
  */
 const props = withDefaults(defineProps<XRButtonProps>(), {
+  mode: 'VR',
   enterOnly: false,
   exitOnly: false,
 })
 
-const globalSessionStore = useGlobalSessionStore()
+const { mode } = toRefs(props)
+
+const status: Ref<XRButtonStatus> = ref('exited') // 'entered' | 'exited' | 'unsupported'
+const reason: Ref<XRButtonUnsupportedReason> = ref('unknown') // 'https' | 'security' | 'unknown'
+
+const sessionMode = computed(() => {
+  return (mode.value === 'inline' ? mode.value : `immersive-${mode.value.toLowerCase()}`) as XRSessionMode
+})
+
+function setStatus(statusValue: XRButtonStatus) {
+  status.value = statusValue
+}
+
+function setReason(reasonValue: XRButtonUnsupportedReason) {
+  reason.value = reasonValue
+}
+
+watchEffect(() => {
+  if (!navigator?.xr) { return void setStatus('unsupported') }
+
+  navigator.xr
+    .isSessionSupported(sessionMode.value)
+    .then((supported) => {
+      if (!supported) {
+        const isHttps = location.protocol === 'https:'
+        setStatus('unsupported')
+        setReason(isHttps ? 'unknown' : 'https')
+      }
+      else {
+        setStatus('exited')
+      }
+    }).catch((error) => {
+      setStatus('unsupported')
+      // https://developer.mozilla.org/en-US/docs/Web/API/XRSystem/isSessionSupported#exceptions
+      if ('name' in error && error.name === 'SecurityError') {
+        setReason('security')
+      }
+      else {
+        setReason('unknown')
+      }
+    })
+})
+
+const label = computed(() => {
+  switch (status.value) {
+    case 'entered':
+      return `Exit ${mode.value}`
+    case 'exited':
+      return `Enter ${mode.value}`
+    case 'unsupported':
+    default:
+      switch (reason.value) {
+        case 'https':
+          return 'HTTPS needed'
+        case 'security':
+          return `${mode.value} blocked`
+        case 'unknown':
+        default:
+          return `${mode.value} unsupported`
+      }
+  }
+})
+
+const { session, mode: modeCtx, startSession, endSession, referenceSpace } = useGlobalSession()
+
+const sessionOptions = computed<XRSessionInit | undefined>(() => {
+  if (!referenceSpace?.value && !props.sessionInit) {
+    return undefined
+  }
+
+  if (referenceSpace?.value && !props.sessionInit) {
+    return { optionalFeatures: [referenceSpace?.value] }
+  }
+
+  if (referenceSpace?.value && props.sessionInit) {
+    return { ...props.sessionInit, optionalFeatures: filterUniq([...(props.sessionInit.optionalFeatures ?? []), referenceSpace?.value]) }
+  }
+
+  return props.sessionInit
+})
+
+const toggleSession = async ({ enterOnly, exitOnly }: Pick<XRButtonProps, 'sessionInit' | 'enterOnly' | 'exitOnly'> = {},
+) => {
+  // Bail if certain toggle way is disabled
+  if (session.value && enterOnly) { return }
+  if (!session.value && exitOnly) { return }
+
+  // Exit/enter session
+  if (session.value) {
+    status.value = 'exited'
+    return await endSession()
+  }
+  else {
+    const options = sessionOptions.value as XRSessionInit
+    status.value = 'entered'
+    return await startSession(options)
+  }
+}
+
+function handleButtonClick() {
+  modeCtx.value = sessionMode.value
+  try {
+    toggleSession({
+      enterOnly: props.enterOnly,
+      exitOnly: props.exitOnly,
+    })
+  }
+  catch (e) {
+    const onError = props.onError
+    if (onError && e instanceof Error) {
+      onError(e)
+    }
+    else { throw e }
+  }
+}
+
+/* const globalSessionStore = useGlobalSessionStore()
 
 const getSessionOptions = (globalStateReferenceSpaceType: XRReferenceSpaceType | null, sessionInit: XRSessionInit | undefined): XRSessionInit | undefined => {
   if (!globalStateReferenceSpaceType && !sessionInit) {
@@ -161,7 +277,7 @@ watchEffect(() => {
         setReason('unknown')
       }
     })
-})
+}) */
 </script>
 
 <template>
