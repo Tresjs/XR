@@ -1,12 +1,12 @@
-import { XRController } from '../classes/XRController'
+import type { XRController } from '../classes/XRController'
 
 export interface XRInteractionEvent {
-    intersection?: THREE.Intersection
-    intersections: THREE.Intersection[]
-    target: XRController
+  intersection?: THREE.Intersection
+  intersections: THREE.Intersection[]
+  target: XRController
 }
 
-  export type XRInteractionType =
+export type XRInteractionType =
   | 'onHover'
   | 'onBlur'
   | 'onSelect'
@@ -19,4 +19,4 @@ export interface XRInteractionEvent {
   | 'onSqueezeMissed'
   | 'onMove'
 
-  export type XRInteractionHandler = (event: XRInteractionEvent) => void
+export type XRInteractionHandler = (event: XRInteractionEvent) => void

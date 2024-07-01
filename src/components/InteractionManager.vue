@@ -1,10 +1,14 @@
 <script setup lang="ts">
-    import { inject } from 'vue'
+/* import { inject } from 'vue'
 
-    const state = inject('state')
-    const {
-        controllers, interactions, hoverState, hasInteraction, getInteraction
-    } = state
+const state = inject('state') */
+/* const {
+  controllers,
+  interactions,
+  hoverState,
+  hasInteraction,
+  getInteraction,
+} = state */
 
 //    const events = useThree((state) => state.events)
 //   const get = useThree((state) => state.get)
@@ -12,7 +16,7 @@
 </script>
 
 <template>
-    <TresGroup>
-        <slot />
-    </TresGroup>
+  <TresGroup>
+    <slot></slot>
+  </TresGroup>
 </template>
