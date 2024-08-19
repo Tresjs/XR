@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@tresjs/core':
         specifier: ^4.0.2
-        version: 4.2.6(three@0.165.0)(vue@3.4.38(typescript@5.5.4))
+        version: 4.2.7(three@0.165.0)(vue@3.4.38(typescript@5.5.4))
       pinia:
         specifier: ^2.1.7
         version: 2.2.2(typescript@5.5.4)(vue@3.4.38(typescript@5.5.4))
@@ -89,7 +89,7 @@ importers:
     dependencies:
       '@tresjs/cientos':
         specifier: ^3.9.0
-        version: 3.9.0(@tresjs/core@4.2.6(three@0.165.0)(vue@3.4.38(typescript@5.5.4)))(react@18.3.1)(three@0.165.0)(tweakpane@4.0.3)(vue@3.4.38(typescript@5.5.4))
+        version: 3.9.0(@tresjs/core@4.2.7(three@0.165.0)(vue@3.4.38(typescript@5.5.4)))(react@18.3.1)(three@0.165.0)(tweakpane@4.0.3)(vue@3.4.38(typescript@5.5.4))
       pinia:
         specifier: ^2.1.7
         version: 2.2.2(typescript@5.5.4)(vue@3.4.38(typescript@5.5.4))
@@ -943,8 +943,8 @@ packages:
       tweakpane: '>=3.0.0'
       vue: '>=3.3'
 
-  '@tresjs/core@4.2.6':
-    resolution: {integrity: sha512-z6Z49rr1vkzHR/yMf2ZA8UvWddYwBIQ6zinrSyacrt3UsayrETvjyZOUESqcX/Up3C8U7//fpA8rGSfL3G3YKw==}
+  '@tresjs/core@4.2.7':
+    resolution: {integrity: sha512-xHDkR+TTtJjB5Bs4UGQ3NzdheAQ+DXfwyXRRfOxgB9FfV9PwM2K5rWrByLcZNF98uZ8tMoEsjE4pWAi9G0VdFw==}
     peerDependencies:
       three: '>=0.133'
       vue: '>=3.4'
@@ -4929,9 +4929,9 @@ snapshots:
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
 
-  '@tresjs/cientos@3.9.0(@tresjs/core@4.2.6(three@0.165.0)(vue@3.4.38(typescript@5.5.4)))(react@18.3.1)(three@0.165.0)(tweakpane@4.0.3)(vue@3.4.38(typescript@5.5.4))':
+  '@tresjs/cientos@3.9.0(@tresjs/core@4.2.7(three@0.165.0)(vue@3.4.38(typescript@5.5.4)))(react@18.3.1)(three@0.165.0)(tweakpane@4.0.3)(vue@3.4.38(typescript@5.5.4))':
     dependencies:
-      '@tresjs/core': 4.2.6(three@0.165.0)(vue@3.4.38(typescript@5.5.4))
+      '@tresjs/core': 4.2.7(three@0.165.0)(vue@3.4.38(typescript@5.5.4))
       '@vueuse/core': 10.11.0(vue@3.4.38(typescript@5.5.4))
       camera-controls: 2.8.5(three@0.165.0)
       stats-gl: 2.2.8
@@ -4946,7 +4946,7 @@ snapshots:
       - '@vue/composition-api'
       - react
 
-  '@tresjs/core@4.2.6(three@0.165.0)(vue@3.4.38(typescript@5.5.4))':
+  '@tresjs/core@4.2.7(three@0.165.0)(vue@3.4.38(typescript@5.5.4))':
     dependencies:
       '@alvarosabu/utils': 3.2.0
       '@vue/devtools-api': 6.6.3
