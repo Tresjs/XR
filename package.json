@@ -61,14 +61,14 @@
   "dependencies": {
     "@tresjs/core": "^4.0.2",
     "pinia": "^2.1.7",
-    "three": "^0.165.0",
+    "three": "^0.169.0",
     "vue": "^3.4.30"
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "^8.0.1",
     "@tresjs/eslint-config": "^1.1.0",
     "@types/node": "^20.14.9",
-    "@types/three": "^0.165.0",
+    "@types/three": "^0.169.0",
     "@vitejs/plugin-vue": "^5.0.5",
     "dts": "^0.1.1",
     "eslint": "^9.5.0",
