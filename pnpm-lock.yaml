@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@tresjs/core':
         specifier: ^4.0.2
-        version: 4.2.6(three@0.169.0)(vue@3.4.38(typescript@5.5.4))
+        version: 4.3.1(three@0.169.0)(vue@3.4.38(typescript@5.5.4))
       pinia:
         specifier: ^2.1.7
         version: 2.2.2(typescript@5.5.4)(vue@3.4.38(typescript@5.5.4))
@@ -89,7 +89,7 @@ importers:
     dependencies:
       '@tresjs/cientos':
         specifier: ^3.9.0
-        version: 3.9.0(@tresjs/core@4.2.6(three@0.169.0)(vue@3.4.38(typescript@5.5.4)))(react@18.3.1)(three@0.169.0)(tweakpane@4.0.3)(vue@3.4.38(typescript@5.5.4))
+        version: 3.9.0(@tresjs/core@4.3.1(three@0.169.0)(vue@3.4.38(typescript@5.5.4)))(react@18.3.1)(three@0.169.0)(tweakpane@4.0.3)(vue@3.4.38(typescript@5.5.4))
       pinia:
         specifier: ^2.1.7
         version: 2.2.2(typescript@5.5.4)(vue@3.4.38(typescript@5.5.4))
@@ -985,8 +985,8 @@ packages:
       tweakpane: '>=3.0.0'
       vue: '>=3.3'
 
-  '@tresjs/core@4.2.6':
-    resolution: {integrity: sha512-z6Z49rr1vkzHR/yMf2ZA8UvWddYwBIQ6zinrSyacrt3UsayrETvjyZOUESqcX/Up3C8U7//fpA8rGSfL3G3YKw==}
+  '@tresjs/core@4.3.1':
+    resolution: {integrity: sha512-81//cbtReAN/azjBgSGOsjmgPQGDNrqAsODuAnThILcAJcNDx5n/Qwut7kfnoyCHef4LynuAHCyd8EbvDSwyJg==}
     peerDependencies:
       three: '>=0.133'
       vue: '>=3.4'
@@ -1267,6 +1267,9 @@ packages:
   '@vue/devtools-api@6.6.3':
     resolution: {integrity: sha512-0MiMsFma/HqA6g3KLKn+AGpL1kgKhFWszC9U29NfpWK5LE7bjeXxySWJrOJ77hBz+TBrBQ7o4QJqbPbqbs8rJw==}
 
+  '@vue/devtools-api@6.6.4':
+    resolution: {integrity: sha512-sGhTPMuXqZ1rVOk32RylztWkfXTRhuS7vgAKv0zjqk8gbsHkJ7xfFf+jbySxt7tWObEJwyKaHMikV/WGDiQm8g==}
+
   '@vue/devtools-api@7.5.2':
     resolution: {integrity: sha512-VxPbAQxJrYSIkoGVvQ2oOoKW8u4CMpvRLySTxhoJA38z8bQEGy9GO33eoRY/DulJbSFRfjZFNvH+dh8B4qpesQ==}
 
@@ -1329,9 +1332,6 @@ packages:
   '@vueuse/core@10.11.0':
     resolution: {integrity: sha512-x3sD4Mkm7PJ+pcq3HX8PLPBadXCAlSDR/waK87dz0gQE+qJnaaFhc/dZVfJz+IUYzTMVGum2QlR7ImiJQN4s6g==}
 
-  '@vueuse/core@10.11.1':
-    resolution: {integrity: sha512-guoy26JQktXPcz+0n3GukWIy/JDNKti9v6VEMu6kV2sYBsWuGiTU8OWdg+ADfUbHg3/3DlqySDe7JmdHrktiww==}
-
   '@vueuse/core@11.1.0':
     resolution: {integrity: sha512-P6dk79QYA6sKQnghrUz/1tHi0n9mrb/iO1WTMk/ElLmTyNqgDeSZ3wcDf6fRBGzRJbeG1dxzEOvLENMjr+E3fg==}
 
@@ -1379,17 +1379,11 @@ packages:
   '@vueuse/metadata@10.11.0':
     resolution: {integrity: sha512-kQX7l6l8dVWNqlqyN3ePW3KmjCQO3ZMgXuBMddIu83CmucrsBfXlH+JoviYyRBws/yLTQO8g3Pbw+bdIoVm4oQ==}
 
-  '@vueuse/metadata@10.11.1':
-    resolution: {integrity: sha512-IGa5FXd003Ug1qAZmyE8wF3sJ81xGLSqTqtQ6jaVfkeZ4i5kS2mwQF61yhVqojRnenVew5PldLyRgvdl4YYuSw==}
-
   '@vueuse/metadata@11.1.0':
     resolution: {integrity: sha512-l9Q502TBTaPYGanl1G+hPgd3QX5s4CGnpXriVBR5fEZ/goI6fvDaVmIl3Td8oKFurOxTmbXvBPSsgrd6eu6HYg==}
 
   '@vueuse/shared@10.11.0':
     resolution: {integrity: sha512-fyNoIXEq3PfX1L3NkNhtVQUSRtqYwJtJg+Bp9rIzculIZWHTkKSysujrOk2J+NrRulLTQH9+3gGSfYLWSEWU1A==}
-
-  '@vueuse/shared@10.11.1':
-    resolution: {integrity: sha512-LHpC8711VFZlDaYUXEBbFBCQ7GS3dVU9mjOhhMhXP6txTV4EhYQg/KGnQuvt/sPAtoUKq7VVUnL6mVtFoL42sA==}
 
   '@vueuse/shared@11.1.0':
     resolution: {integrity: sha512-YUtIpY122q7osj+zsNMFAfMTubGz0sn5QzE5gPzAIiCmtt2ha3uQUY1+JPyL4gRCTsLPX82Y9brNbo/aqlA91w==}
@@ -5084,9 +5078,9 @@ snapshots:
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
 
-  '@tresjs/cientos@3.9.0(@tresjs/core@4.2.6(three@0.169.0)(vue@3.4.38(typescript@5.5.4)))(react@18.3.1)(three@0.169.0)(tweakpane@4.0.3)(vue@3.4.38(typescript@5.5.4))':
+  '@tresjs/cientos@3.9.0(@tresjs/core@4.3.1(three@0.169.0)(vue@3.4.38(typescript@5.5.4)))(react@18.3.1)(three@0.169.0)(tweakpane@4.0.3)(vue@3.4.38(typescript@5.5.4))':
     dependencies:
-      '@tresjs/core': 4.2.6(three@0.169.0)(vue@3.4.38(typescript@5.5.4))
+      '@tresjs/core': 4.3.1(three@0.169.0)(vue@3.4.38(typescript@5.5.4))
       '@vueuse/core': 10.11.0(vue@3.4.38(typescript@5.5.4))
       camera-controls: 2.8.5(three@0.169.0)
       stats-gl: 2.2.8
@@ -5101,11 +5095,11 @@ snapshots:
       - '@vue/composition-api'
       - react
 
-  '@tresjs/core@4.2.6(three@0.169.0)(vue@3.4.38(typescript@5.5.4))':
+  '@tresjs/core@4.3.1(three@0.169.0)(vue@3.4.38(typescript@5.5.4))':
     dependencies:
       '@alvarosabu/utils': 3.2.0
-      '@vue/devtools-api': 6.6.3
-      '@vueuse/core': 10.11.1(vue@3.4.38(typescript@5.5.4))
+      '@vue/devtools-api': 6.6.4
+      '@vueuse/core': 11.1.0(vue@3.4.38(typescript@5.5.4))
       three: 0.169.0
       vue: 3.4.38(typescript@5.5.4)
     transitivePeerDependencies:
@@ -5542,6 +5536,8 @@ snapshots:
 
   '@vue/devtools-api@6.6.3': {}
 
+  '@vue/devtools-api@6.6.4': {}
+
   '@vue/devtools-api@7.5.2':
     dependencies:
       '@vue/devtools-kit': 7.5.2
@@ -5644,16 +5640,6 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  '@vueuse/core@10.11.1(vue@3.4.38(typescript@5.5.4))':
-    dependencies:
-      '@types/web-bluetooth': 0.0.20
-      '@vueuse/metadata': 10.11.1
-      '@vueuse/shared': 10.11.1(vue@3.4.38(typescript@5.5.4))
-      vue-demi: 0.14.10(vue@3.4.38(typescript@5.5.4))
-    transitivePeerDependencies:
-      - '@vue/composition-api'
-      - vue
-
   '@vueuse/core@11.1.0(vue@3.4.38(typescript@5.5.4))':
     dependencies:
       '@types/web-bluetooth': 0.0.20
@@ -5663,7 +5649,6 @@ snapshots:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
-    optional: true
 
   '@vueuse/core@11.1.0(vue@3.5.12(typescript@5.5.4))':
     dependencies:
@@ -5689,18 +5674,9 @@ snapshots:
 
   '@vueuse/metadata@10.11.0': {}
 
-  '@vueuse/metadata@10.11.1': {}
-
   '@vueuse/metadata@11.1.0': {}
 
   '@vueuse/shared@10.11.0(vue@3.4.38(typescript@5.5.4))':
-    dependencies:
-      vue-demi: 0.14.10(vue@3.4.38(typescript@5.5.4))
-    transitivePeerDependencies:
-      - '@vue/composition-api'
-      - vue
-
-  '@vueuse/shared@10.11.1(vue@3.4.38(typescript@5.5.4))':
     dependencies:
       vue-demi: 0.14.10(vue@3.4.38(typescript@5.5.4))
     transitivePeerDependencies:
@@ -5713,7 +5689,6 @@ snapshots:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
-    optional: true
 
   '@vueuse/shared@11.1.0(vue@3.5.12(typescript@5.5.4))':
     dependencies:
