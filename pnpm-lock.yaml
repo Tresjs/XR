@@ -70,8 +70,8 @@ importers:
         specifier: ^5.3.1
         version: 5.4.9(@types/node@20.16.13)
       vite-plugin-banner:
-        specifier: ^0.7.1
-        version: 0.7.1
+        specifier: ^0.8.0
+        version: 0.8.0
       vite-plugin-dts:
         specifier: ^4.0.0
         version: 4.2.4(@types/node@20.16.13)(rollup@4.24.0)(typescript@5.5.4)(vite@5.4.9(@types/node@20.16.13))
@@ -4019,8 +4019,8 @@ packages:
   vfile@6.0.3:
     resolution: {integrity: sha512-KzIbH/9tXat2u30jf+smMwFCsno4wHVdNmzFyL+T/L3UGqqk6JKfVqOFOZEpZSHADH1k40ab6NUIXZq422ov3Q==}
 
-  vite-plugin-banner@0.7.1:
-    resolution: {integrity: sha512-Bww2Xd5tOGsZ1yZ9rQiGneryvsL1u86znPrqeQjCsXPsG72pnSdV5lcQA+cy8UNDguMqyTJiCevlNUbLnT85UA==}
+  vite-plugin-banner@0.8.0:
+    resolution: {integrity: sha512-JpDWDYxtrsytuvUOJCgJcTkBb6XM8yPOidjRtB6F5SW1JSzDd/Y+PD/44wR6ovWKXhSUiyDRqPvx7mMf8+8ELg==}
 
   vite-plugin-dts@4.2.4:
     resolution: {integrity: sha512-REcYoxO90Pi8c0P1J7XAa/nVwNVGkX2eYkBEIfFSfcKE4g1W8sB0R23a7SU3aLEMfdOdb0SVHq3JlJ+Qb6gjgA==}
@@ -8415,7 +8415,7 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
 
-  vite-plugin-banner@0.7.1: {}
+  vite-plugin-banner@0.8.0: {}
 
   vite-plugin-dts@4.2.4(@types/node@20.16.13)(rollup@4.24.0)(typescript@5.5.4)(vite@5.4.9(@types/node@20.16.13)):
     dependencies:
