@@ -23,7 +23,7 @@ importers:
     devDependencies:
       '@release-it/conventional-changelog':
         specifier: ^9.0.0
-        version: 9.0.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(release-it@17.10.0(typescript@5.6.3))
+        version: 9.0.1(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(release-it@17.10.0(typescript@5.6.3))
       '@tresjs/eslint-config':
         specifier: ^1.1.0
         version: 1.4.0(@typescript-eslint/utils@8.10.0(eslint@9.13.0(jiti@2.0.0))(typescript@5.6.3))(@vue/compiler-sfc@3.5.12)(eslint@9.13.0(jiti@2.0.0))(typescript@5.6.3)
@@ -818,8 +818,8 @@ packages:
   '@polka/url@1.0.0-next.28':
     resolution: {integrity: sha512-8LduaNlMZGwdZ6qWrKlfa+2M4gahzFkprZiAt2TF8uS0qQgBizKXpXURqvTJ4WtmupWxaLqjRb2UCTe72mu+Aw==}
 
-  '@release-it/conventional-changelog@9.0.0':
-    resolution: {integrity: sha512-jISIZ3kFR/xxBlDlbLBdQJsIDaml6NzTueAps3uZV2GDnQhe6FytCAmztiyEXRvCBXIvVV4X/O9S2l5zt2vmbA==}
+  '@release-it/conventional-changelog@9.0.1':
+    resolution: {integrity: sha512-7vGLMLcj/MaQjktNPR0rI6fdFVvVDXpOqk/fVTaFSeMVd9vjpVGrvRg5+Ko82Z/dOsiLGLEMFMQ9Xu31YjvJ5g==}
     engines: {node: ^18.18.0 || ^20.9.0 || ^22.0.0}
     peerDependencies:
       release-it: ^17.0.0
@@ -4640,7 +4640,7 @@ snapshots:
 
   '@polka/url@1.0.0-next.28': {}
 
-  '@release-it/conventional-changelog@9.0.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(release-it@17.10.0(typescript@5.6.3))':
+  '@release-it/conventional-changelog@9.0.1(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(release-it@17.10.0(typescript@5.6.3))':
     dependencies:
       concat-stream: 2.0.0
       conventional-changelog: 6.0.0(conventional-commits-filter@5.0.0)
