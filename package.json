@@ -67,7 +67,7 @@
   "devDependencies": {
     "@release-it/conventional-changelog": "^9.0.0",
     "@tresjs/eslint-config": "^1.1.0",
-    "@types/node": "^20.14.9",
+    "@types/node": "^22.0.0",
     "@types/three": "^0.169.0",
     "@vitejs/plugin-vue": "^5.0.5",
     "dts": "^0.1.1",
